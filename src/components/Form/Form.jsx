@@ -1,13 +1,13 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
-import { addContact } from '../../redux/contactSlice.js';
+import { addContact } from '../../redux/operations.js';
 import { selectContacts } from '../../redux/selectors.js';
 import { nanoid } from 'nanoid';
-import css from './ContactForm.module.css';
+import css from './Form.module.css';
 
 export const ContactForm = () => {
-  const dispatch = useDispatch();
   const contacts = useSelector(selectContacts);
+  const dispatch = useDispatch();
 
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
@@ -27,7 +27,7 @@ export const ContactForm = () => {
 
   const handleSubmit = event => {
     event.preventDefault();
-
+  
     const isContactRepeat = contacts.find(el => el.name === name);
 
     if (isContactRepeat) {
@@ -40,7 +40,6 @@ export const ContactForm = () => {
       id: nanoid(),
     };
 
-    
     dispatch(addContact(contact));
 
     event.target.reset();
