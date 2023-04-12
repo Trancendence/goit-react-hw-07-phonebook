@@ -40,8 +40,8 @@ export const ContactForm = () => {
       id: nanoid(),
     };
 
-    const action = addContact(contact);
-    dispatch(action);
+    
+    dispatch(addContact(contact));
 
     event.target.reset();
   };
